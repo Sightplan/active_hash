@@ -157,7 +157,7 @@ module ActiveHash
       def where(options)
         return @records if options.nil?
         (@records || []).select do |record|
-          options.all? { |col, match| record[col] == match }
+          options.all? { |col, match| match.kind_of?(Array) ?  (match.include? record[col])  : record[col] == match }
         end
       end
 
