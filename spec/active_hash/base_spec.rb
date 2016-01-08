@@ -245,6 +245,11 @@ describe ActiveHash, "Base" do
         ]
       end.should raise_error(ActiveHash::IdError)
     end
+
+    it "filters the records by Array" do
+      record = Country.where(:name => ['US','Canada'])
+      record.count.should == 2
+    end
   end
 
   describe ".find_by" do
